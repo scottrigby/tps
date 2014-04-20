@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * TPS2 module.
+ */
+
+/**
+ * Developer helper function.
+ */
+function tps2_developer() {
+  $modules = array(
+    'admin_menu_toolbar',
+    'devel',
+    'views_ui',
+    'panels_ipe',
+    'magic_dev',
+  );
+  module_enable($modules);
+}

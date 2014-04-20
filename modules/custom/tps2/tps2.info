@@ -1,0 +1,32 @@
+name = tps2
+core = 7.x
+; Learning groups
+dependencies[] = og_ui
+dependencies[] = og_register
+dependencies[] = og_context
+dependencies[] = views
+; Calendar
+dependencies[] = fullcalendar
+; Email subscriptions, notifications, & commenting
+dependencies[] = message_subscribe
+dependencies[] = message_notify
+; Theming
+dependencies[] = panelizer
+dependencies[] = blockify
+dependencies[] = magic
+dependencies[] = fences
+; Spam
+dependencies[] = honeypot
+; UI
+dependencies[] = ckeditor
+; Exporting configs
+dependencies[] = features
+
+; TODO
+; Export group content type (from og_example, but tweaked)
+; Export CKEditor & text format settings for Filtered HTML
+; Export post (but change to 'class')
+; Do the same for 'event' (also with relationship to class)
+; Add multiple media field
+; Add views
+; See README.md for more
