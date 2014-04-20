@@ -1,4 +1,4 @@
-# TPS re-reconsidered
+# TPS re-re considered
 
 ## Learning groups
 - og
