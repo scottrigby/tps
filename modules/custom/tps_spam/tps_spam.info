@@ -1,0 +1,9 @@
+name = TPS Spam
+description = Adds spam prevention and community management.
+core = 7.x
+dependencies[] = tps
+dependencies[] = honeypot
+dependencies[] = flag
+dependencies[] = rules
+dependencies[] = state_machine
+dependencies[] = views

@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * @file
+ * TPS Appearance module installation and updates.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function tps_theme_install() {
+  // Set theme. @todo Change this to our subtheme.
+  $theme = 'aurora';
+  tps_theme_set_theme($theme);
+
+  // Clean up navigation.
+  module_disable(array('toolbar'));
+
+  // Unset blocks.
+  $blocks = array();
+  $common = array(
+    'theme' => $theme,
+    'weight' => 0,
+    'region' => BLOCK_REGION_NONE,
+  );
+  $blocks[] = array(
+    'module' => 'system',
+    'delta' => 'navigation',
+  ) + $common;
+  $blocks[] = array(
+    'module' => 'search',
+    'delta' => 'form',
+  ) + $common;
+  $blocks[] = array(
+    'module' => 'system',
+    'delta' => 'powered-by',
+  ) + $common;
+  tps_theme_unset_blocks($blocks);
+}
+
+/**
+ * Sets the theme.
+ *
+ * @param string $theme
+ *   Site theme name.
+ */
+function tps_theme_set_theme($theme) {
+  theme_enable(array($theme));
+  variable_set('theme_default', $theme);
+}
+
+/**
+ * Unsets blocks.
+ *
+ * @param array $blocks
+ *   An array of block info to unset.
+ *
+ * @see block_admin_display_form_submit()
+ */
+function tps_theme_unset_blocks($blocks = array()) {
+  $transaction = db_transaction();
+  try {
+    foreach ($blocks as $block) {
+      $block['status'] = (int) ($block['region'] != BLOCK_REGION_NONE);
+      $block['region'] = $block['status'] ? $block['region'] : '';
+      db_update('block')
+        ->fields(array(
+          'status' => $block['status'],
+          'weight' => $block['weight'],
+          'region' => $block['region'],
+        ))
+        ->condition('module', $block['module'])
+        ->condition('delta', $block['delta'])
+        ->condition('theme', $block['theme'])
+        ->execute();
+    }
+  }
+  catch (Exception $e) {
+    $transaction->rollback();
+    watchdog_exception('block', $e);
+    throw $e;
+  }
+  cache_clear_all();
+}

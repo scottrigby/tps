@@ -130,8 +130,7 @@
     - Should catch most spam bots, without punishing the user (no CAPTCHAs or
       waiting to be approved by a moderator)
 - Community moderation (for the few bots that get through, or malicious humans)
-    - flag_content (https://drupal.org/node/1230978)
-    - OR build with flag, views, rules, and state_flow
+    - Build with flag, views, rules, and state_flow
         - If admins agree a community moderated post should be unpublished, an
           email should automatically be sent to the author (notice), and to the
           user(s) who flagged it (thanks/encouragement)

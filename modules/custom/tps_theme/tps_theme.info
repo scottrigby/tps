@@ -1,0 +1,8 @@
+name = TPS Appearance
+description = Adds theme tools for mobile first, responsive design.
+core = 7.x
+dependencies[] = tps
+dependencies[] = panelizer
+dependencies[] = blockify
+dependencies[] = magic
+dependencies[] = fences

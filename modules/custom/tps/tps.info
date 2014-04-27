@@ -1,0 +1,5 @@
+name = TPS
+description = TPS Base
+core = 7.x
+dependencies[] = environment_indicator
+; @todo Export environment_indicator configurations.

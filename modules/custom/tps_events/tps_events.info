@@ -1,0 +1,6 @@
+name = TPS Events
+description = Adds event scheduling.
+core = 7.x
+dependencies[] = tps
+dependencies[] = fullcalendar
+dependencies[] = views
