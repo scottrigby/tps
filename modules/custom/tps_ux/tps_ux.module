@@ -1,6 +1,7 @@
 <?php
-
 /**
  * @file
- * TPS User Experience module.
+ * Code for the tps_ux feature.
  */
+
+include_once 'tps_ux.features.inc';

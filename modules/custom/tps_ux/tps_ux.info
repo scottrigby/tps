@@ -2,6 +2,14 @@ name = TPS User Experience
 description = Adds user experience niceties.
 core = 7.x
 package = TPS
-dependencies[] = tps
+dependencies[] = chosen
 dependencies[] = ckeditor
-; @todo Add multiple media field
+dependencies[] = ctools
+dependencies[] = strongarm
+features[ckeditor_profile][] = Advanced
+features[ckeditor_profile][] = Full
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[variable][] = chosen_disable_search_threshold
+features[variable][] = chosen_minimum_multiple
+features[variable][] = chosen_minimum_single
