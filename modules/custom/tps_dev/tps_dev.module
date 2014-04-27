@@ -55,8 +55,11 @@ function tps_dev_cache_revert() {
 function tps_dev_dependencies_disable() {
   $dependencies = tps_dev_dependencies();
   $enabled = module_list();
-  if ($remaining = array_intersect($dependencies, $enabled) && (!empty($remaining))) {
-    module_disable($remaining);
+  $remaining = array_intersect($dependencies, $enabled);
+  if (!empty($remaining)) {
+    // Note do not disable dependents, or be stuck in an endless loop as
+    // tps_dev_disable() continues to try to disable itself.
+    module_disable($remaining, FALSE);
   }
 }
 
@@ -86,6 +89,6 @@ function tps_dev_dependencies_enable() {
  *   The info file parsed dependencies.
  */
 function tps_dev_dependencies() {
-  $info = drupal_parse_info_file('tps_dev.info');
+  $info = drupal_parse_info_file(__DIR__ . '/tps_dev.info');
   return isset($info['dependencies']) ? $info['dependencies'] : array();
 }
