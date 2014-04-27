@@ -1,6 +1,15 @@
 <?php
-
 /**
  * @file
- * TPS Appearance module.
+ * Code for the TPS Appearance feature.
  */
+
+include_once 'tps_theme.features.inc';
+
+/**
+ * Implements hook_form_FORM_ID_alter.
+ */
+function tps_theme_form_system_site_information_settings_alter(&$form, &$form_state, $form_id) {
+  // Increase the length of the slogan.
+  $form['site_information']['site_slogan']['#maxlength'] = 255;
+}
