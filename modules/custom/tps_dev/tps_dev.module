@@ -48,3 +48,44 @@ function tps_dev_cache_revert() {
   }
   drupal_flush_all_caches();
 }
+
+/**
+ * Disables dependencies.
+ */
+function tps_dev_dependencies_disable() {
+  $dependencies = tps_dev_dependencies();
+  $enabled = module_list();
+  if ($remaining = array_intersect($dependencies, $enabled) && (!empty($remaining))) {
+    module_disable($remaining);
+  }
+}
+
+/**
+ * Uninstall dependencies.
+ */
+function tps_dev_dependencies_uninstall() {
+  $dependencies = tps_dev_dependencies();
+  drupal_uninstall_modules($dependencies);
+}
+
+/**
+ * Enables dependencies.
+ */
+function tps_dev_dependencies_enable() {
+  $dependencies = tps_dev_dependencies();
+  module_enable($dependencies);
+}
+
+/**
+ * Gets dependencies from the info file for enable, disable, and uninstall.
+ *
+ * Note only developer modules should be added as dependencies. We parse the
+ * info file so we don't have to list them in two places.
+ *
+ * @return array
+ *   The info file parsed dependencies.
+ */
+function tps_dev_dependencies() {
+  $info = drupal_parse_info_file('tps_dev.info');
+  return isset($info['dependencies']) ? $info['dependencies'] : array();
+}

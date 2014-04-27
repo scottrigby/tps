@@ -10,6 +10,7 @@
  */
 function tps_dev_enable() {
   tps_dev_cache_disable();
+  tps_dev_dependencies_enable();
 }
 
 /**
@@ -17,6 +18,14 @@ function tps_dev_enable() {
  */
 function tps_dev_disable() {
   tps_dev_cache_revert();
+  tps_dev_dependencies_disable();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function tps_dev_uninstall() {
+  tps_dev_dependencies_uninstall();
 }
 
 /**
