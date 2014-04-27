@@ -1,0 +1,11 @@
+name = TPS Navigation
+core = 7.x
+package = TPS
+dependencies[] = features
+dependencies[] = menu
+dependencies[] = tps
+features[features_api][] = api:2
+features[menu_custom][] = user-menu
+features[menu_links][] = user-menu_login:user/login
+features[menu_links][] = user-menu_register:user/register
+features[menu_links][] = user-menu_user-account:user
