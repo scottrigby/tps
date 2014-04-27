@@ -1,0 +1,6 @@
+name = TPS User Experience
+description = Adds user experience niceties.
+core = 7.x
+dependencies[] = tps
+dependencies[] = ckeditor
+; @todo Add multiple media field
