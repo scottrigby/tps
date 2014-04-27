@@ -19,9 +19,9 @@ function tps_theme_strongarm() {
     'blockify-site-slogan' => 'blockify-site-slogan',
     'blockify-page-title' => 'blockify-page-title',
     'blockify-breadcrumb' => 'blockify-breadcrumb',
+    'blockify-tabs' => 'blockify-tabs',
     'blockify-messages' => 'blockify-messages',
     'blockify-logo' => 0,
-    'blockify-tabs' => 0,
     'blockify-actions' => 0,
     'blockify-feed-icons' => 0,
   );
