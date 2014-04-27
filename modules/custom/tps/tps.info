@@ -3,4 +3,6 @@ description = TPS Base
 core = 7.x
 package = TPS
 dependencies[] = environment_indicator
+; Exporting config changes to code.
+dependencies[] = features
 ; @todo Export environment_indicator configurations.

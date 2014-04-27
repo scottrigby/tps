@@ -14,5 +14,3 @@ dependencies[] = views_ui
 dependencies[] = panels_ipe
 ; Theming development magic tools.
 dependencies[] = magic_dev
-; Exporting config changes to code.
-dependencies[] = features
