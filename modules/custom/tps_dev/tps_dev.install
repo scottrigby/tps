@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * TPS Development module installation and updates.
+ */
+
+/**
+ * Implements hook_enable().
+ */
+function tps_dev_enable() {
+  tps_dev_cache_disable();
+}
+
+/**
+ * Implements hook_disable().
+ */
+function tps_dev_disable() {
+  tps_dev_cache_revert();
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function tps_dev_requirements() {
+  $t = get_t();
+  $requirements = array();
+
+  // Check development environment status.
+  $value = $t('Undefined');
+  $ok = FALSE;
+  $enabled = module_exists('environment_indicator');
+  $active = $enabled ? environment_indicator_get_active() : NULL;
+
+  if (!$active) {
+    $description = $enabled ? $t('This is not a defined environment.') : $t('The Environment indicator module is not enabled.');
+  }
+  else {
+    $value = $active['name'];
+    $ok = in_array($active['machine'], array('local', 'dev'));
+    $description = $ok ? $t('This is an allowed development environment.') : $t('This is not an allowed development environment.');
+  }
+
+  $requirements['environment'] = array(
+    'title' => $t('Environment'),
+    'value' => $value,
+    'description' => $description,
+    'severity' => $ok ? REQUIREMENT_OK : REQUIREMENT_ERROR,
+  );
+
+  return $requirements;
+}

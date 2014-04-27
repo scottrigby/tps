@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * TPS Development module (ONLY ENABLE IN DEV ENVIRONMENTS).
+ *
+ * @todo Add environment indicator and hook_requirements() so this is never
+ *   enabled in other environments.
+ * @todo Add Drush aliases, and Drush policy file here.
+ * @todo Add development procedures in this module's README.md.
+ */
+
+/**
+ * Disables Drupal caching, for development.
+ *
+ * @see tps_dev_cache_revert()
+ */
+function tps_dev_cache_disable() {
+  $store = array();
+  $variables = array(
+    'cache',
+    'block_cache',
+    'cache_lifetime',
+    'page_cache_maximum_age',
+    'preprocess_css',
+    'preprocess_js',
+  );
+  foreach ($variables as $name => $value) {
+    // Add to the stored variable state.
+    if ($state = variable_get($name)) {
+      $store[$name] = $state;
+    }
+    // Reset variables to default (no caching).
+    variable_del($name);
+  }
+  // Save the variable state.
+  variable_set('tps_dev_variable_store', $store);
+  drupal_flush_all_caches();
+}
+
+/**
+ * Reverts Drupal caching to it's stored state.
+ *
+ * @see tps_dev_cache_disable()
+ */
+function tps_dev_cache_revert() {
+  $store = variable_get('tps_dev_variable_store');
+  foreach ($store as $name => $value) {
+    variable_set($name, $value);
+  }
+  drupal_flush_all_caches();
+}

@@ -1,0 +1,16 @@
+name = TPS Development
+description = Adds development tools. ONLY ENABLE IN DEV ENVIRONMENTS.
+core = 7.x
+dependencies[] = tps
+; Fast configuration for export.
+dependencies[] = admin_menu_toolbar
+; Developer tools.
+dependencies[] = devel
+; Edit views for export.
+dependencies[] = views_ui
+; Faster edit panels & panelizer templates for export.
+dependencies[] = panels_ipe
+; Theming development magic tools.
+dependencies[] = magic_dev
+; Exporting config changes to code.
+dependencies[] = features
