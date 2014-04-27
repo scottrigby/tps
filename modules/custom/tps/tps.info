@@ -2,7 +2,8 @@ name = TPS
 description = TPS Base
 core = 7.x
 package = TPS
+dependencies[] = ctools
 dependencies[] = environment_indicator
-; Exporting config changes to code.
-dependencies[] = features
-; @todo Export environment_indicator configurations.
+features[ctools][] = environment_indicator:default_environment_indicator_environments:1
+features[environment_indicator_environment][] = local
+features[features_api][] = api:2

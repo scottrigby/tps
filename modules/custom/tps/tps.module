@@ -4,3 +4,5 @@
  * @file
  * TPS module.
  */
+
+include_once 'tps.features.inc';
