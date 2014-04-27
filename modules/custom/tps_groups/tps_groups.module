@@ -7,6 +7,27 @@
 include_once 'tps_groups.features.inc';
 
 /**
- * @file
- * TPS Groups module.
+ * Implements hook_views_default_views_alter().
+ *
+ * Add og functionality to views only if the TPS Groups module is enabled.
  */
+function tps_groups_views_default_views_alter(&$views) {
+  if (isset($views['classes'])) {
+    $handler =& $views['classes']->display['default']->handler;
+    /* Filter criterion: Content: Groups (og_group_ref) */
+    $handler->display->display_options['filters']['og_group_ref_target_id']['id'] = 'og_group_ref_target_id';
+    $handler->display->display_options['filters']['og_group_ref_target_id']['table'] = 'og_membership';
+    $handler->display->display_options['filters']['og_group_ref_target_id']['field'] = 'og_group_ref_target_id';
+    $handler->display->display_options['filters']['og_group_ref_target_id']['exposed'] = TRUE;
+    $handler->display->display_options['filters']['og_group_ref_target_id']['expose']['operator_id'] = 'og_group_ref_target_id_op';
+    $handler->display->display_options['filters']['og_group_ref_target_id']['expose']['label'] = 'Groups';
+    $handler->display->display_options['filters']['og_group_ref_target_id']['expose']['operator'] = 'og_group_ref_target_id_op';
+    $handler->display->display_options['filters']['og_group_ref_target_id']['expose']['identifier'] = 'og_group_ref_target_id';
+    $handler->display->display_options['filters']['og_group_ref_target_id']['expose']['multiple'] = TRUE;
+    $handler->display->display_options['filters']['og_group_ref_target_id']['expose']['remember_roles'] = array(
+      2 => '2',
+      1 => 0,
+      3 => 0,
+    );
+  }
+}
