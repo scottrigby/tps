@@ -4,6 +4,8 @@ core = 7.x
 package = TPS
 ; Fast configuration for export.
 dependencies[] = admin_menu_toolbar
+; Also list admin_menu explicitly so our helper functions disable it properly.
+dependencies[] = admin_menu
 ; Developer tools.
 dependencies[] = devel
 ; Edit views for export.

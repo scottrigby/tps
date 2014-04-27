@@ -60,6 +60,7 @@ function tps_dev_dependencies_disable() {
     // Note do not disable dependents, or be stuck in an endless loop as
     // tps_dev_disable() continues to try to disable itself.
     module_disable($remaining, FALSE);
+    drupal_flush_all_caches();
   }
 }
 
