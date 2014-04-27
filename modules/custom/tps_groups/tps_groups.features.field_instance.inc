@@ -25,6 +25,12 @@ function tps_groups_field_default_field_instances() {
         'type' => 'og_list_default',
         'weight' => 1,
       ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
