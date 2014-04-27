@@ -17,9 +17,9 @@ function tps_default_environment_indicator_environment() {
   $environment->name = 'Local';
   $environment->regexurl = '.(local|kala)';
   $environment->settings = array(
-    'color' => '#aa3333',
+    'color' => '#33dd33',
     'text_color' => '#ffffff',
-    'weight' => '100',
+    'weight' => '0',
     'position' => 'top',
     'fixed' => 0,
   );
