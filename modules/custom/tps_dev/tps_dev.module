@@ -4,8 +4,6 @@
  * @file
  * TPS Development module (ONLY ENABLE IN DEV ENVIRONMENTS).
  *
- * @todo Add environment indicator and hook_requirements() so this is never
- *   enabled in other environments.
  * @todo Add Drush aliases, and Drush policy file here.
  * @todo Add development procedures in this module's README.md.
  */
