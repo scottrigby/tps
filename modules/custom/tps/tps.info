@@ -3,6 +3,7 @@ description = TPS Base
 core = 7.x
 package = TPS
 dependencies[] = ctools
+dependencies[] = entity_view_mode
 dependencies[] = environment_indicator
 features[ctools][] = environment_indicator:default_environment_indicator_environments:1
 features[environment_indicator_environment][] = local
