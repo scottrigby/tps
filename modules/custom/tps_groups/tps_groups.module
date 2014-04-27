@@ -1,4 +1,10 @@
 <?php
+/**
+ * @file
+ * Code for the TPS Learning Groups feature.
+ */
+
+include_once 'tps_groups.features.inc';
 
 /**
  * @file
