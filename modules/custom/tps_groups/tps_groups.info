@@ -2,10 +2,15 @@ name = TPS Learning Groups
 description = Adds decoupled learning group management.
 core = 7.x
 package = TPS
-dependencies[] = tps
-dependencies[] = og_ui
-dependencies[] = og_register
+dependencies[] = features
 dependencies[] = og_context
-; @todo Export group content type (from og_example, but tweaked)
-; @todo Export post (but change to 'class')
-; @todo Do the same for 'event' (also with relationship to class)
+dependencies[] = og_register
+dependencies[] = og_ui
+dependencies[] = tps
+features[features_api][] = api:2
+features[field_base][] = body
+features[field_base][] = group_group
+features[field_base][] = og_group_ref
+features[field_instance][] = node-class-og_group_ref
+features[field_instance][] = node-group-body
+features[field_instance][] = node-group-group_group
