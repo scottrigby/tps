@@ -9,11 +9,11 @@
  */
 
 /**
- * Disables Drupal caching, for development.
+ * Unsets Drupal caching, for development.
  *
  * @see tps_dev_cache_revert()
  */
-function tps_dev_cache_disable() {
+function tps_dev_cache_unset() {
   $store = array();
   $variables = array(
     'cache',
@@ -28,10 +28,10 @@ function tps_dev_cache_disable() {
     if ($state = variable_get($name)) {
       $store[$name] = $state;
     }
-    // Reset variables to default (no caching).
+    // No caching by default.
     variable_del($name);
   }
-  // Save the variable state.
+  // Save the stored variable state.
   variable_set('tps_dev_variable_store', $store);
   drupal_flush_all_caches();
 }
@@ -39,7 +39,7 @@ function tps_dev_cache_disable() {
 /**
  * Reverts Drupal caching to it's stored state.
  *
- * @see tps_dev_cache_disable()
+ * @see tps_dev_cache_unset()
  */
 function tps_dev_cache_revert() {
   $store = variable_get('tps_dev_variable_store');

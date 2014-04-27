@@ -9,7 +9,7 @@
  * Implements hook_enable().
  */
 function tps_dev_enable() {
-  tps_dev_cache_disable();
+  tps_dev_cache_unset();
   tps_dev_dependencies_enable();
 }
 
