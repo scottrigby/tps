@@ -6,6 +6,8 @@ package = TPS
 dependencies[] = admin_menu_toolbar
 ; Also list admin_menu explicitly so our helper functions disable it properly.
 dependencies[] = admin_menu
+; Bundle export/import (for those already managed by another module).
+dependencies[] = bundle_copy
 ; Developer tools.
 dependencies[] = devel
 ; Edit views for export.
