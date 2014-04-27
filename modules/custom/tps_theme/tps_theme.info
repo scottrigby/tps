@@ -1,6 +1,7 @@
 name = TPS Appearance
 description = Adds theme tools for mobile first, responsive design.
 core = 7.x
+package = TPS
 dependencies[] = tps
 dependencies[] = panelizer
 dependencies[] = blockify

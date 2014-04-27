@@ -1,6 +1,7 @@
 name = TPS Learning Groups
 description = Adds decoupled learning group management.
 core = 7.x
+package = TPS
 dependencies[] = tps
 dependencies[] = og_ui
 dependencies[] = og_register

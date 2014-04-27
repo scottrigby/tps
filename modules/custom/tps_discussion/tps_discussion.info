@@ -1,6 +1,7 @@
 name = TPS Discussion
 description = Adds email subscriptions, notifications, & commenting.
 core = 7.x
+package = TPS
 dependencies[] = tps
 dependencies[] = message_subscribe
 dependencies[] = message_notify

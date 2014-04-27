@@ -1,6 +1,7 @@
 name = TPS Spam
 description = Adds spam prevention and community management.
 core = 7.x
+package = TPS
 dependencies[] = tps
 dependencies[] = honeypot
 dependencies[] = flag

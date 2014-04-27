@@ -1,6 +1,7 @@
 name = TPS Development
 description = Adds development tools. ONLY ENABLE IN DEV ENVIRONMENTS.
 core = 7.x
+package = TPS
 dependencies[] = tps
 ; Fast configuration for export.
 dependencies[] = admin_menu_toolbar
