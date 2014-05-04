@@ -78,7 +78,7 @@ function tps_class_strongarm() {
         'custom_settings' => FALSE,
       ),
       'search_result' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
     ),
     'extra_fields' => array(
