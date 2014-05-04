@@ -25,12 +25,6 @@ function tps_groups_field_default_field_instances() {
         'type' => 'og_list_default',
         'weight' => 1,
       ),
-      'search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 1,
-      ),
       'teaser' => array(
         'label' => 'above',
         'module' => 'entityreference',
@@ -108,13 +102,6 @@ function tps_groups_field_default_field_instances() {
         'type' => 'text_trimmed',
         'weight' => 1,
       ),
-      'search_result' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -167,12 +154,6 @@ function tps_groups_field_default_field_instances() {
         ),
         'type' => 'og_group_subscribe',
         'weight' => 0,
-      ),
-      'search_result' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'hidden',
