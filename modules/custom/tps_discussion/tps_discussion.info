@@ -5,3 +5,4 @@ package = TPS
 dependencies[] = tps
 dependencies[] = message_subscribe
 dependencies[] = message_notify
+features[rules_config][] = rules_og_new_content_message

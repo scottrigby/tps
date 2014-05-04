@@ -4,3 +4,21 @@
  * @file
  * TPS Discussion module.
  */
+
+/**
+ * Implements hook_default_rules_configuration_alter().
+ *
+ * Remove OG's default notification Rules, as this modules has a superior
+ * version of it, that uses Message notify.
+ *
+ * This differs from og_example.module in that we check if the default config is
+ * set before unsetting it. The reason is we want subscriptions, notifications,
+ * & commenting to be decoupled from group functionality.
+ *
+ * @see og_example_default_rules_configuration_alter()
+ */
+function tps_discussion_default_rules_configuration_alter(&$configs) {
+  if (isset($configs['rules_og_new_content'])) {
+    unset($configs['rules_og_new_content']);
+  }
+}
