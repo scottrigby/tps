@@ -22,3 +22,42 @@ function tps_ux_views_default_views_alter(&$views) {
     $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = TRUE;
   }
 }
+
+/**
+ * Implements hook_element_info_alter().
+ *
+ * @see better_formats_element_info_alter()
+ */
+function tps_ux_element_info_alter(&$type) {
+  // Our process callback must run immediately after filter_process_format().
+  $filter_process_format_location = array_search('filter_process_format', $type['text_format']['#process']);
+  $replacement = array('filter_process_format', 'tps_ux_filter_process_format');
+  array_splice($type['text_format']['#process'], $filter_process_format_location, 1, $replacement);
+}
+
+/**
+ * Process callback for form elements that have a text format selector attached.
+ *
+ * This callback runs after filter_process_format() and performs additional
+ * modifications to the form element.
+ *
+ * @param array $element
+ *   The element render array.
+ *
+ * @return array
+ *   The processed element.
+ *
+ * @see better_formats_filter_process_format()
+ * @see filter_process_format()
+ */
+function tps_ux_filter_process_format($element) {
+  // Hides the filter guidelines text.
+  $element['format']['guidelines']['#access'] = FALSE;
+  // Hides the filter tips link.
+  $element['format']['help']['#access'] = FALSE;
+  // Changes the format element from a fieldset to a div (removes the grey
+  // border from below the textarea).
+  $element['format']['#type'] = 'container';
+
+  return $element;
+}
