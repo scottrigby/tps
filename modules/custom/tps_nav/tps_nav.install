@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * TPS Navigation module installation and updates.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function tps_nav_install() {
+  // Delete the default installed 'Home' main menu link.
+  menu_link_delete(NULL, '<front>');
+}
