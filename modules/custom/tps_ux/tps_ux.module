@@ -7,23 +7,6 @@
 include_once 'tps_ux.features.inc';
 
 /**
- * Implements hook_views_default_views_alter().
- *
- * Add UX enhancements to views only if the TPS UX module is enabled.
- */
-function tps_ux_views_default_views_alter(&$views) {
-  if (isset($views['classes'])) {
-    $handler =& $views['classes']->display['page']->handler;
-    // Views load more.
-    $handler->display->display_options['pager']['type'] = 'load_more';
-    $handler->display->display_options['pager']['options']['offset'] = '0';
-    $handler->display->display_options['pager']['options']['id'] = '0';
-    $handler->display->display_options['pager']['options']['quantity'] = '0';
-    $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = TRUE;
-  }
-}
-
-/**
  * Implements hook_element_info_alter().
  *
  * @see better_formats_element_info_alter()
