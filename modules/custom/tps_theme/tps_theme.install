@@ -10,7 +10,9 @@
  */
 function tps_theme_install() {
   // Set theme. @todo Change this to our subtheme.
-  $theme = 'aurora';
+  //$theme = 'aurora';
+  // Temporary, until we create an aurora subtheme.
+  $theme = 'responsive_bartik';
   tps_theme_set_theme($theme);
 
   // Clean up navigation.
