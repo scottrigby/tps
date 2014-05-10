@@ -4,6 +4,7 @@ package = TPS
 dependencies[] = entity
 dependencies[] = features
 dependencies[] = strongarm
+dependencies[] = tps
 dependencies[] = views
 dependencies[] = views_load_more
 features[ctools][] = strongarm:strongarm:1
