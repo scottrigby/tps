@@ -13,7 +13,7 @@ include_once 'tps_ux.features.inc';
  */
 function tps_ux_views_default_views_alter(&$views) {
   if (isset($views['classes'])) {
-    $handler =& $views['classes']->display['default']->handler;
+    $handler =& $views['classes']->display['page']->handler;
     // Views load more.
     $handler->display->display_options['pager']['type'] = 'load_more';
     $handler->display->display_options['pager']['options']['offset'] = '0';
