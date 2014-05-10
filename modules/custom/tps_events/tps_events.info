@@ -1,8 +1,12 @@
-name = TPS Events
+name = tps_events
 description = Adds event scheduling.
 core = 7.x
 package = TPS
-dependencies[] = date_popup
-dependencies[] = tps
-dependencies[] = fullcalendar
-dependencies[] = views
+dependencies[] = ctools
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[variable][] = configurable_timezones
+features[variable][] = date_default_timezone
+features[variable][] = date_first_day
+features[variable][] = site_default_country
