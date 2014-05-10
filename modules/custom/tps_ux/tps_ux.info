@@ -14,3 +14,6 @@ features[variable][] = chosen_disable_search
 features[variable][] = chosen_disable_search_threshold
 features[variable][] = chosen_minimum_multiple
 features[variable][] = chosen_minimum_single
+features[variable][] = date_format_long
+features[variable][] = date_format_medium
+features[variable][] = date_format_short
