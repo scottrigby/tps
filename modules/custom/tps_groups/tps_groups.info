@@ -46,6 +46,7 @@ features[variable][] = comment_group
 features[variable][] = comment_preview_group
 features[variable][] = comment_subject_field_group
 features[variable][] = field_bundle_settings_node__group
+features[variable][] = field_bundle_settings_user__user
 features[variable][] = menu_options_group
 features[variable][] = menu_parent_group
 features[variable][] = node_options_group
