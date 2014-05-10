@@ -10,6 +10,10 @@ dependencies[] = admin_menu
 dependencies[] = bundle_copy
 ; Developer tools.
 dependencies[] = devel
+; Debug email discussions.
+dependencies[] = maillog
+; Rules administrative UI.
+dependencies[] = rules_admin
 ; Edit views for export.
 dependencies[] = views_ui
 ; Faster edit panels & panelizer templates for export.
