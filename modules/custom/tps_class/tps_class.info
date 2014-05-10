@@ -1,6 +1,8 @@
 name = TPS Class
 core = 7.x
 package = TPS
+dependencies[] = entity
+dependencies[] = features
 dependencies[] = strongarm
 dependencies[] = views
 dependencies[] = views_load_more
@@ -9,6 +11,8 @@ features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2
 features[field_instance][] = node-class-body
 features[node][] = class
+features[user_permission][] = create class content
+features[user_permission][] = edit own class content
 features[variable][] = comment_anonymous_class
 features[variable][] = comment_class
 features[variable][] = comment_default_mode_class
