@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * TPS Groups module installation and updates.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function tps_groups_install() {
+  // Set the homepage in a way that can be easily overridden (not Features), so
+  // classes can be enabled without groups.
+  variable_set('site_frontpage', 'groups');
+}
