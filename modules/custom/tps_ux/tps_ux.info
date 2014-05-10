@@ -11,6 +11,7 @@ features[ckeditor_profile][] = Advanced
 features[ckeditor_profile][] = Full
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
+features[variable][] = chosen_disable_search
 features[variable][] = chosen_disable_search_threshold
 features[variable][] = chosen_minimum_multiple
 features[variable][] = chosen_minimum_single
