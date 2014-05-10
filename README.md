@@ -55,16 +55,18 @@
 
 ## Events
 - Event content type
+    - Date range (start and end date/time)
     - Relationships
         - Events can be part of classes, or not
         - Events can be part of learning groups, or not
+            - If attached to classes that are part of learning groups, the event
+              will automatically get that group context
+        - Events can be connected to a location (physical, online, etc)
         - Examples:
             - A class meeting
             - A learning group meeting
             - An international phone call between learning group organizers
             - An exhibition, a protest, or sit-in
-    - People can express interest in a class, which can be internationalized
-      easily if part of multiple learning groups
 
 ## Locations
 - Re-usable location information to attach to events (maps, special
