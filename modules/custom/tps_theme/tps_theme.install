@@ -15,6 +15,12 @@ function tps_theme_install() {
   $theme = 'responsive_bartik';
   tps_theme_set_theme($theme);
 
+  // Basic theme settings.
+  $settings = array(
+    'toggle_logo' => 0,
+  );
+  variable_set('theme_' . $theme . '_settings', $settings);
+
   // Clean up navigation.
   module_disable(array('toolbar'));
 
