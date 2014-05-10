@@ -7,6 +7,80 @@
 include_once 'tps_groups.features.inc';
 
 /**
+ * Implements hook_entity_info_alter().
+ */
+function tps_groups_entity_info_alter(&$entity_info) {
+  $entity_info['user']['view modes']['group'] = array(
+    'label' => t('Group profile'),
+    'custom settings' => TRUE,
+  );
+}
+
+/**
+ * Implements hook_user_view().
+ */
+function tps_groups_user_view($account) {
+  $account->content['name'] = array(
+    '#weight' => 0,
+    '#markup' => '<h3>' . check_plain($account->name) . '</h3>',
+  );
+
+  // Abuse template_preprocess_user_picture(). This is the easiest way to remove
+  // the class 'user-picture', since it's stored in user-picture.tpl.php, which
+  // is called by @code theme('user_picture') @endcode.
+  // @todo consider drupal.org/project/user_picture_field.
+  $vars['account'] = $account;
+  template_preprocess_user_picture($vars);
+  $picture = $vars['user_picture'];
+  $account->content['picture'] = array(
+    '#markup' => $picture,
+  );
+
+  // @todo Change to an entityreference comma-separated list field formatter.
+  $groups = array();
+  if (!empty($account->og_user_node[LANGUAGE_NONE])) {
+    foreach ($account->og_user_node[LANGUAGE_NONE] as $item) {
+      $group = node_load($item['target_id']);
+      $groups[] = check_plain($group->title);
+    }
+  }
+  $account->content['groups'] = array(
+    '#markup' => implode(', ', $groups),
+  );
+}
+
+/**
+ * Implements hook_field_extra_fields()
+ */
+function tps_groups_field_extra_fields() {
+  $extra = array();
+  $extra['user']['user'] = array(
+    'display' => array(
+      'name' => array(
+        'label' => t('Core user name'),
+        'weight' => 0,
+      ),
+      'picture' => array(
+        'label' => t('TPS user picture'),
+        'weight' => 0,
+      ),
+      'groups' => array(
+        'label' => t('User groups'),
+        'weight' => 0,
+      ),
+      // So we can hide it.
+      // @todo consider the core patch to add a visible key, so this could be
+      //   hidden by default: drupal.org/node/1256368.
+      'user_picture' => array(
+        'label' => t('Core user picture'),
+        'weight' => 0,
+      ),
+    ),
+  );
+  return $extra;
+}
+
+/**
  * Implements hook_views_default_views_alter().
  *
  * Add og functionality to views only if the TPS Groups module is enabled.
