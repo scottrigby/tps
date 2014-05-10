@@ -1,4 +1,10 @@
 <?php
+/**
+ * @file
+ * Code for the TPS Discussion feature.
+ */
+
+include_once 'tps_discussion.features.inc';
 
 /**
  * @file
@@ -6,126 +12,10 @@
  */
 
 /**
- * Implements hook_field_default_field_bases_alter().
- */
-function tps_discussion_field_default_field_bases_alter(&$field_bases) {
-  if (module_exists('tps_groups')) {
-    // Exported field_base: 'field_node_reference'.
-    $field_bases['field_node_reference'] = array(
-      'active' => 1,
-      'cardinality' => 1,
-      'deleted' => 0,
-      'entity_types' => array(),
-      'field_name' => 'field_node_reference',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'target_id' => array(
-          0 => 'target_id',
-        ),
-      ),
-      'locked' => 0,
-      'module' => 'entityreference',
-      'settings' => array(
-        'handler' => 'base',
-        'handler_settings' => array(
-          'behaviors' => array(
-            'views-select-list' => array(
-              'status' => 0,
-            ),
-          ),
-          'sort' => array(
-            'direction' => 'ASC',
-            'field' => 'body:value',
-            'property' => 'nid',
-            'type' => 'none',
-          ),
-          'target_bundles' => array(),
-        ),
-        'handler_submit' => 'Change handler',
-        'target_type' => 'node',
-      ),
-      'translatable' => 0,
-      'type' => 'entityreference',
-    );
-  }
-}
-
-/**
- * Implements hook_field_default_field_instances_alter().
- *
- * @see hook_field_default_fields_alter()
- */
-function tps_discussion_field_default_field_instances_alter(&$field_instances) {
-  if (module_exists('tps_groups')) {
-    // Exported field_instance: 'message-og_new_content-field_node_reference'
-    $field_instances['message-og_new_content-field_node_reference'] = array(
-      'bundle' => 'og_new_content',
-      'default_value' => NULL,
-      'default_value_function' => '',
-      'deleted' => 0,
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'entityreference',
-          'settings' => array(
-            'link' => FALSE,
-          ),
-          'type' => 'entityreference_label',
-          'weight' => 0,
-        ),
-        'message_notify_email_body' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'message_notify_email_subject' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'message',
-      'field_name' => 'field_node_reference',
-      'label' => 'Node reference',
-      'required' => 0,
-      'settings' => array(
-        'behaviors' => array(
-          'prepopulate' => array(
-            'action' => 'none',
-            'fallback' => 'none',
-            'skip_perm' => 0,
-            'status' => 0,
-          ),
-        ),
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'entityreference',
-        'settings' => array(
-          'match_operator' => 'CONTAINS',
-          'path' => '',
-          'size' => 60,
-        ),
-        'type' => 'entityreference_autocomplete',
-        'weight' => 1,
-      ),
-    );
-  }
-}
-
-/**
  * Implements hook_default_rules_configuration_alter().
  *
  * Remove OG's default notification Rules, as this modules has a superior
  * version of it, that uses Message notify.
- *
- * This differs from og_example.module in that we check if the default config is
- * set before unsetting it. The reason is we want subscriptions, notifications,
- * & commenting to be decoupled from group functionality.
  *
  * @see og_example_default_rules_configuration_alter()
  */
@@ -133,106 +23,4 @@ function tps_discussion_default_rules_configuration_alter(&$configs) {
   if (isset($configs['rules_og_new_content'])) {
     unset($configs['rules_og_new_content']);
   }
-}
-
-/**
- * Implements hook_default_message_type().
- *
- * Note this is not added via Features because it would erase our TPS Groups
- * check on update.
- */
-function tps_discussion_default_message_type() {
-  $items = array();
-
-  // Only add if tps_groups.module is enabled.
-  if (module_exists('tps_groups')) {
-    $items['og_new_content'] = entity_import('message_type', '{
-      "name" : "og_new_content",
-      "description" : "OG new content",
-      "argument_keys" : [],
-      "argument" : [],
-      "category" : "message_type",
-      "data" : {
-        "token options" : { "clear" : 0 },
-        "purge" : { "override" : 0, "enabled" : 0, "quota" : "", "days" : "" }
-      },
-      "language" : "",
-      "arguments" : null,
-      "message_text" : { "und" : [
-          {
-            "value" : "New post in group -- [message:field-node-reference:title]",
-            "format" : "full_html",
-            "safe_value" : "\\u003Cp\\u003ENew post in group -- [message:field-node-reference:title]\\u003C\\/p\\u003E\\n"
-          },
-          {
-            "value" : "Hello [message:user:name],\\r\\n\\r\\nThere is a new post called \\u003Ca href=\\u0022[message:field-node-reference:url]\\u0022\\u003E[message:field-node-reference:title]\\u003C\\/a\\u003E that belongs to one of the groups you are subscribed to.\\r\\n\\r\\nCheers,\\r\\n[site:name]",
-            "format" : "full_html",
-            "safe_value" : "\\u003Cp\\u003EHello [message:user:name],\\u003C\\/p\\u003E\\n\\u003Cp\\u003EThere is a new post called \\u003Ca href=\\u0022[message:field-node-reference:url]\\u0022\\u003E[message:field-node-reference:title]\\u003C\\/a\\u003E that belongs to one of the groups you are subscribed to.\\u003C\\/p\\u003E\\n\\u003Cp\\u003ECheers,\\u003Cbr \\/\\u003E\\n[site:name]\\u003C\\/p\\u003E\\n"
-          }
-        ]
-      },
-      "rdf_mapping" : []
-    }');
-  }
-
-  return $items;
-}
-
-/**
- * Implements hook_default_rules_configuration().
- *
- * Note this is not added via Features because it would erase our TPS Groups
- * check on update.
- */
-function tps_discussion_default_rules_configuration() {
-  $items = array();
-
-  // Only add if tps_groups.module is enabled.
-  if (module_exists('tps_groups')) {
-    $items['rules_og_new_content_message'] = entity_import('rules_config', '{ "rules_og_new_content_message" : {
-        "LABEL" : "OG new content notification (With Message)",
-        "PLUGIN" : "reaction rule",
-        "OWNER" : "rules",
-        "REQUIRES" : [ "og", "rules", "message_notify" ],
-        "ON" : { "node_insert" : [] },
-        "IF" : [ { "og_entity_is_group_content" : { "entity" : [ "node" ] } } ],
-        "DO" : [
-          { "og_get_members" : {
-              "USING" : { "group_content" : [ "node" ] },
-              "PROVIDE" : { "group_members" : { "group_members" : "List of group members" } }
-            }
-          },
-          { "LOOP" : {
-              "USING" : { "list" : [ "group-members" ] },
-              "ITEM" : { "list_item" : "Current list item" },
-              "DO" : [
-                { "entity_create" : {
-                    "USING" : {
-                      "type" : "message",
-                      "param_type" : "og_new_content",
-                      "param_user" : [ "list-item" ]
-                    },
-                    "PROVIDE" : { "entity_created" : { "entity_created" : "Message entity" } }
-                  }
-                },
-                { "data_set" : {
-                    "data" : [ "entity-created:field-node-reference" ],
-                    "value" : [ "node" ]
-                  }
-                },
-                { "entity_save" : { "data" : [ "entity-created" ], "immediate" : 1 } },
-                { "message_notify_process" : {
-                    "message" : [ "entity-created" ],
-                    "save_on_fail" : 0,
-                    "save_on_success" : 0
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
-    }');
-  }
-  return $items;
 }
