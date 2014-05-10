@@ -4,6 +4,7 @@ core = 7.x
 package = TPS
 dependencies[] = ctools
 dependencies[] = entity
+dependencies[] = entityreference_prepopulate
 dependencies[] = features
 dependencies[] = list
 dependencies[] = node
