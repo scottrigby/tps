@@ -35,7 +35,7 @@ function tps_ux_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'chosen_minimum_single';
-  $strongarm->value = '0';
+  $strongarm->value = '3';
   $export['chosen_minimum_single'] = $strongarm;
 
   $strongarm = new stdClass();
