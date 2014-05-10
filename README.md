@@ -56,6 +56,9 @@
 ## Events
 - Event content type
     - Date range (start and end date/time)
+        - Time zone is explicitly saved with field information, and displayed
+          with no time zone conversion to avoid conversion for users in
+          different locales
     - Relationships
         - Events can be part of classes, or not
         - Events can be part of learning groups, or not
