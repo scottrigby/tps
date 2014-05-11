@@ -3,6 +3,7 @@ description = Adds event scheduling.
 core = 7.x
 package = TPS
 dependencies[] = date
+dependencies[] = entityreference
 dependencies[] = fullcalendar
 dependencies[] = options
 dependencies[] = tps_class
