@@ -31,7 +31,7 @@ function tps_groups_node_info() {
     'group' => array(
       'name' => t('Group'),
       'base' => 'node_content',
-      'description' => t('The group that will have members and content associated with.'),
+      'description' => t('A learning group, with members, classes and other associated content.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
