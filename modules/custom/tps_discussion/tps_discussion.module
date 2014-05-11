@@ -7,11 +7,6 @@
 include_once 'tps_discussion.features.inc';
 
 /**
- * @file
- * TPS Discussion module.
- */
-
-/**
  * Implements hook_default_rules_configuration_alter().
  *
  * Remove OG's default notification Rules, as this modules has a superior
@@ -22,5 +17,18 @@ include_once 'tps_discussion.features.inc';
 function tps_discussion_default_rules_configuration_alter(&$configs) {
   if (isset($configs['rules_og_new_content'])) {
     unset($configs['rules_og_new_content']);
+  }
+}
+
+/**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ */
+function tps_discussion_field_widget_options_buttons_form_alter(&$element, &$form_state, $context) {
+  if ($context['instance']['entity_type'] == 'flagging' && $context['instance']['field_name'] == 'field_interest') {
+    if (isset($element['#title'])) {
+      // The title is redundant on the interest field, since flag_inline unflag
+      // provides us with an option more consistent with the 'Add me' toggle.
+      $element['#title'] = '';
+    }
   }
 }
