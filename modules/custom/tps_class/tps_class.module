@@ -24,9 +24,11 @@ function tps_class_block_view($delta = '') {
   $block = array();
   switch ($delta) {
     case 'create_links':
-      if (arg(0) == 'node' && is_numeric(arg(1))) {
+      // Classes are nodes.
+      $entity_type = 'node';
+      if ($entity = menu_get_object()) {
         $block['subject'] = t('Create content');
-        $block['content'] = tps_class_create_links(arg(1));
+        $block['content'] = tps_class_create_links($entity_type, $entity);
       }
       break;
   }
@@ -69,25 +71,35 @@ function tps_class_get_reference_fields() {
 /**
  * Formats class content create links for Entityreference Prepopulate.
  *
- * @param int $entity_id
- *   The entity ID.
+ * @param string $entity_type
+ *   The current entity type.
+ * @param object $entity
+ *   The current entity.
  *
  * @see og_node_create_links()
  */
-function tps_class_create_links($entity_id) {
+function tps_class_create_links($entity_type, $entity) {
   $items = $element = array();
+
+  // Get current entity ID.
+  list($id,,,) = entity_extract_ids($entity_type, $entity);
 
   // Start building link options.
   $options['query'] = drupal_get_destination();
 
   // Add group entity ID.
-  // @todo Get the group reference field from the current course entity, find
-  //   it's groups, and add prepopulate info.
-  #$options['query'][$class_og_field] = $gids;
+  // Entityreference Prepopulate doesn't currently work with multiple gids, so
+  // we can just use this function to return the first one. Normal
+  // entityreference_prepopulate fields do work.
+  // @todo Consider patching this.
+  // @see https://drupal.org/node/2033937
+  if ($context = og_context()) {
+    $options['query'][OG_AUDIENCE_FIELD] = $context['gid'];
+  }
 
   // Get all entityrefernce fields that target the class bundle.
   foreach (tps_class_get_reference_fields() as $field) {
-    $options['query'][$field['field_name']] = $entity_id;
+    $options['query'][$field['field_name']] = $id;
 
     // Get the instances.
     foreach ($field['bundles'] as $entity_type => $bundles) {
