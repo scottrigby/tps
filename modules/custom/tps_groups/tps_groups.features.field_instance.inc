@@ -155,7 +155,7 @@ function tps_groups_field_default_field_instances() {
       'module' => 'og',
       'settings' => array(),
       'type' => 'og_complex',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
