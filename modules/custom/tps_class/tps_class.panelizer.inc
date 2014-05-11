@@ -193,6 +193,32 @@ function tps_class_panelizer_defaults() {
     $pane->uuid = 'a454fe35-00df-4eb3-a445-c4d6fcc94d72';
     $display->content['new-a454fe35-00df-4eb3-a445-c4d6fcc94d72'] = $pane;
     $display->panels['right'][0] = 'new-a454fe35-00df-4eb3-a445-c4d6fcc94d72';
+    $pane = new stdClass();
+    $pane->pid = 'new-62b73995-f444-48f2-a9b2-efe8864777d7';
+    $pane->panel = 'right';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'subscribe_class-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'arguments' => array(
+        'entity_id' => '%node:nid',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => 'subscribe-class',
+      'css_class' => '',
+    );
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '62b73995-f444-48f2-a9b2-efe8864777d7';
+    $display->content['new-62b73995-f444-48f2-a9b2-efe8864777d7'] = $pane;
+    $display->panels['right'][1] = 'new-62b73995-f444-48f2-a9b2-efe8864777d7';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-8484efdb-0c09-40c1-8b8c-cc6d6be1c9a2';
   $panelizer->display = $display;

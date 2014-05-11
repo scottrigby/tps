@@ -7,6 +7,13 @@
 include_once 'tps_discussion.features.inc';
 
 /**
+ * Implements hook_menu_alter().
+ */
+function tps_discussion_menu_alter(&$items) {
+  $items['user/%user/message-subscribe']['access callback'] = FALSE;
+}
+
+/**
  * Implements hook_default_rules_configuration_alter().
  *
  * Remove OG's default notification Rules, as this modules has a superior

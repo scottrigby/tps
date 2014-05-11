@@ -14,6 +14,13 @@ function tps_discussion_ctools_plugin_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function tps_discussion_views_api($module = NULL, $api = NULL) {
+  return array("api" => "3.0");
+}
+
+/**
  * Implements hook_flag_default_flags().
  */
 function tps_discussion_flag_default_flags() {
@@ -54,11 +61,11 @@ function tps_discussion_flag_default_flags() {
     'form_unflagging_button' => 'Confirm',
     'form_unflag_link_leads_to_edit' => 1,
     'form_interaction' => 'flagging_inline',
-    'api_version' => 3,
     'module' => 'tps_discussion',
     'locked' => array(
       0 => 'name',
     ),
+    'api_version' => 3,
   );
   return $flags;
 
