@@ -31,7 +31,7 @@ function tps_class_node_info() {
     'class' => array(
       'name' => t('Class'),
       'base' => 'node_content',
-      'description' => t('A self-directed class.'),
+      'description' => t('A peer-directed class.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
