@@ -10,6 +10,7 @@ dependencies[] = views_load_more
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2
+features[field_base][] = field_class_ref
 features[field_instance][] = node-class-body
 features[node][] = class
 features[user_permission][] = create class content
