@@ -76,8 +76,8 @@
    */
   Drupal.ajax.prototype.commands.flagging_inline_update_link = function(ajax, response, status) {
     Drupal.flagUtils.updateContentIdLinks(response);
-    // @todo: Trigger a flagGlobal{Before,After}LinkUpdate event. But first we'd
-    // better have a fully populated 'response' parcel; see comment in flagging_inline_command_update_link().
+    // @see flagging_inline_command_update_link().
+    $.event.trigger('flagGlobalAfterLinkUpdate', [response]);
   };
 
   /**
